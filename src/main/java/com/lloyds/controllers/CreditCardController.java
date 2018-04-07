@@ -1,7 +1,5 @@
 package com.lloyds.controllers;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,18 +23,18 @@ public class CreditCardController {
 	CreditCardService cardService;
 	
 	@PutMapping("/add")
-	public ResponseEntity<CreditCardInfo> add(@Valid @RequestBody CreditCardDetailsClient card) {
+	public ResponseEntity<CreditCardInfo> add(@RequestBody CreditCardDetailsClient card) {
 			CreditCardInfo details = cardService.createCreditCard(card);
 		 return new ResponseEntity<CreditCardInfo>(details,HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/charge")
-	public ResponseEntity<ChargeCreditClient> charge(@Valid @RequestBody ChargeCredit card) {
+	public ResponseEntity<ChargeCreditClient> charge(@RequestBody ChargeCredit card) {
 		return new ResponseEntity<ChargeCreditClient>(cardService.charge(card), HttpStatus.OK);
 	}
 	
 	@PostMapping("/credit")
-	public ResponseEntity<ChargeCreditClient> credit(@Valid @RequestBody ChargeCredit card) {
+	public ResponseEntity<ChargeCreditClient> credit(@RequestBody ChargeCredit card) {
 		return new ResponseEntity<ChargeCreditClient>(cardService.credit(card), HttpStatus.OK);
 	}
 	

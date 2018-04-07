@@ -2,11 +2,9 @@ package com.lloyds.pojos;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotBlank;
-
 public class ChargeCredit implements Serializable{
 	
-	@NotBlank
+	//@NotBlank
 	private String number;
 	private double amount;
 	

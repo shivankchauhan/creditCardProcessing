@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class CreditCardDetails implements Serializable{
@@ -16,17 +15,17 @@ public class CreditCardDetails implements Serializable{
 	@GeneratedValue
 	private Long id;
 	
-	@NotNull
+	//@NotNull
 	private String name;
 	
-	@NotNull
+	//@NotNull
 	@Column(unique=true)
 	private Long number;
 	
-	@NotNull
+	//@NotNull
 	private double limit;
 	
-	@NotNull
+	//@NotNull
 	private double bal;
 
 	public Long getId() {

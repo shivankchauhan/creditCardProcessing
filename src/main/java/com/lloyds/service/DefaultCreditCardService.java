@@ -23,6 +23,9 @@ public class DefaultCreditCardService implements CreditCardService{
 	
 	public CreditCardInfo createCreditCard(CreditCardDetailsClient cardDetails) {
 		CreditCardNumberValidator.validate(cardDetails.getNumber());
+		if(cardDetails.getName() == null) {
+			throw new IllegalArgumentException("Name field cannot be empty.");
+		}
 		CreditCardDetails details = creditCardDetailsMapper(cardDetails);
 		ccRepo.save(details);
 		return creditCardInfoMapper(details);
@@ -49,6 +52,9 @@ public class DefaultCreditCardService implements CreditCardService{
 		CreditCardNumberValidator.validate(credit.getNumber());
 		Long cardNumber = Long.parseLong(credit.getNumber());
 		CreditCardDetails details = ccRepo.findByNumber(cardNumber);
+		if(details == null) {
+			throw new RecordNotFoundException("Records Not Found");
+		}
 		double currentBal = details.getBal();
 		details.setBal(currentBal-credit.getAmount());
 		return new ChargeCreditClient(cardNumber, convertAmountToString(details.getBal()));
